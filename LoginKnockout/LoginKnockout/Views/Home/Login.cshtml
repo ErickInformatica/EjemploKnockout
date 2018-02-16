@@ -1,0 +1,12 @@
+﻿@model LoginKnockout.Models.UsuarioLogIn
+
+
+<h2>Login</h2>
+
+@using (Html.BeginForm("Login", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true);
+    @Html.EditorForModel()
+    <input type="submit" value="Login"/>
+}

@@ -1,0 +1,126 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Usuario.cshtml";
+}
+
+@section Scripts{
+    @Scripts.Render("~/bundles/usuario")
+}
+
+<div class="row" id="tablaOpinion">
+    <div class="col-md-12">
+        <div class="col-md-4s">
+            <h2>Agregar</h2>
+            <form class="form-inline" data-bind="submit: agregar">
+                <div class="form-group col-md-7">
+                    <label for="inputName" class="control-label">Nombre</label>
+                    <input name="inputName" class="form-control" type="text" data-bind="value: usaurioNuevo.Nombre" />             
+                </div>
+                <div class="form-group col-md-7">
+                    <label for="inputApellido" class="control-label">Apellido</label>
+                    <input name="inputApellido" class="form-control" type="text" data-bind="value: usaurioNuevo.Apellido" />
+                </div>
+                <div class="form-group col-md-7">
+                    <label for="inputCorreo" class="control-label">Correo</label>
+                    <input name="inputCorreo" class="form-control" type="text" data-bind="value: usaurioNuevo.Correo" />
+                </div>
+                <div class="form-group col-md-7">
+                    <label for="inputComentario" class="control-label">Comentario</label>
+                    <input name="inputComentario" class="form-control" type="text" data-bind="value: usaurioNuevo.Comentario" />
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="control-label">Opinion</label>
+                    <select class="form-control" data-bind="options: opinions, optionsText: 'Nombre', value: usaurioNuevo.Opinion"></select>
+                </div>
+                <div class="form-group col-md-7">
+                    <label for="inputPass" class="control-label">Pass</label>
+                    <input name="inputPass" class="form-control" type="password" data-bind="value: usaurioNuevo.Pass" />
+                </div>
+                <button class="btn btn-success col-md-7">REGISTRAR</button>
+            </form>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-md-7">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Correo</th>
+                            <th>Comentario</th>
+                            <th>Opinion</th>
+                            <th>Pass</th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="foreach: usuarios">
+                        <tr>
+                            <td data-bind="text: UsuarioId"></td>
+                            <td data-bind="text: Nombre"></td>
+                            <td data-bind="text: Apellido"></td>
+                            <td data-bind="text: Correo"></td>
+                            <td data-bind="text: Comentario"></td>
+                            <td data-bind="text: Opinion.Nombre"></td>
+                            <td data-bind="text: Pass"></td>
+                            <td>
+                                <div class="btn-group">
+
+                                    <button class="btn btn-warning" data-bind="click: $root.cargarUsuario" onclick="UsuarioCliente.mostrarForm()"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
+                                    <button class="btn btn-danger" data-bind="click: $root.eliminar"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-10">
+        <div data-bind="if: usuarioCargado" id="formularioUsuario">
+            <h2>Formulario Editar</h2>
+            <form class="form-horizontal" data-bind="submit: editar">
+                <div class="form-group">
+                    <label for="inputId" class="control-label">Id</label>
+                    <input name="inputId" id="inputId" type="text" class="form-control" readonly="readonly" data-bind="value: usuarioCargado().UsuarioId" />
+                </div>
+                <div class="form-group">
+                    <label for="inputNombre" class="control-label">Nombre</label>
+                    <input name="inputNombre" id="inputNombre" type="text" class="form-control" data-bind="value: usuarioCargado().Nombre" />
+                </div>
+                <div class="form-group">
+                    <label for="inputCarne" class="control-label">Apellido</label>
+                    <input name="inputCarne" id="inputCarne" type="text" class="form-control" data-bind="value: usuarioCargado().Apellido" />
+                </div>
+                <div class="form-group">
+                    <label for="inputNota" class="control-label">Correo</label>
+                    <input name="inputNota" id="inputNota" type="text" class="form-control" data-bind="value: usuarioCargado().Correo" />
+                </div>
+                <div class="form-group">
+                    <label for="inputNota" class="control-label">Comentario</label>
+                    <input name="inputNota" id="inputNota" type="text" class="form-control" data-bind="value: usuarioCargado().Comentario" />
+                </div>
+                <div class="form-group">
+                    <label for="inputGradoId" class="control-label">Opinion</label>
+
+                    <select class="form-control" data-bind="options: opinions, optionsText: 'Nombre', value: usuarioCargado().Opinion"></select>
+                </div>
+                <div class="form-group">
+                    <label for="inputPass" class="control-label">Pass</label>
+                    <input name="inputPass" id="inputNota" type="text" class="form-control" data-bind="value: usuarioCargado().Pass" />
+                </div>
+                <div class="form-group">
+                    <button type="submit" onclick="EditTabla.mostrarForm()" class="btn btn-success">Editar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
