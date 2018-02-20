@@ -16,6 +16,7 @@
 		Correo VARCHAR(100) NOT NULL,
 		Comentario TEXT NOT NULL,
 		OpinionId INT NOT NULL,
+		Pass VARCHAR(100) NOT NULL,
 		PRIMARY KEY(UsuarioId),
 		FOREIGN KEY(OpinionId) REFERENCES Opinion(OpinionId)
 	);
